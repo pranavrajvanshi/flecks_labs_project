@@ -73,7 +73,7 @@ async function setTempDataInPlayFab(current_temp_data){
 
 async function getWeatherData(lat,lon) {
   const promise = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=8965c3c0440544c4985161104231206&q=${lat},${lon}&aqi=yes`
+    `https://api.weatherapi.com/v1/current.json?key=8965c3c0440544c4985161104231206&q=${lat},${lon}&aqi=yes`
   );
   const promise_json=await promise.json();
   return promise_json;
