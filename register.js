@@ -1,6 +1,4 @@
 async function registerUser(){
-    console.log("REGISTER");
-    // form.addEventListener('submit', async (event)=> {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     event.preventDefault()
@@ -29,5 +27,4 @@ async function registerUser(){
     catch(error){
         console.log(error);
     }
-// })
 }
