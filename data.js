@@ -1,6 +1,4 @@
 async function getTempDataFromPlayFab(){
-  // console.log("CURRENT-DATA");
-
   try{
       const response = await fetch('https://f5ea3.playfabapi.com/Object/GetObjects', {
           method: 'POST',
@@ -25,12 +23,10 @@ async function getTempDataFromPlayFab(){
       if(Object.keys(json_response.data.Objects).length === 0 || Object.keys(json_response.data.Objects.temperatureData).length === 0) {
         return temp_data;
       }
-      console.log("GET_DATA:",json_response.data.Objects.temperatureData.DataObject.temp);
       temp_data = json_response.data.Objects.temperatureData.DataObject.temp
       return temp_data
   }
   catch(error) {
-      console.log("getTempDataError");
       console.log(error);
   }
 // })
@@ -59,14 +55,12 @@ async function setTempDataInPlayFab(current_temp_data){
           },
       })
       var json_response = await response.json();
-      console.log("SET-DATA-RESPONSE:",json_response);
       if (!response.ok) // or check for response.status
         throw new Error(json_response.errorMessage)  // throw new Error(response.statusText);
       
       return response
   }
   catch(error) {
-      console.log("getTempDataError");
       console.log(error);
   }
 }
@@ -85,9 +79,7 @@ async function uploadAndFetchTempData(position) {
   var temp =  result.current.temp_c;
 
   var current_temp_data = await getTempDataFromPlayFab();
-  console.log("RECEIVED-DATA:",current_temp_data);
   current_temp_data.push(String(temp));
-  console.log("CURRENT-TEMP-DATA:",current_temp_data);
 
   const response = await setTempDataInPlayFab(current_temp_data);
   if(!response.ok) {
