@@ -20,8 +20,10 @@ async function registerUser(){
         })
         var json_response = await response.json();
         console.log(json_response);
-        if (!response.ok) // or check for response.status
-        throw new Error(json_response.errorMessage)  // throw new Error(response.statusText);
+        if (!response.ok){ 
+            alert(json_response.errorMessage)
+            throw new Error(json_response.errorMessage) 
+        }
         alert("Registered!")
     }
     catch(error){
